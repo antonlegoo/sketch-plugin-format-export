@@ -1,0 +1,90 @@
+///////////////////////////////////////////////////////////
+//  Searches for a SINGLE INSTANCE of a date placeholder and 
+//  replaces them with formatted date
+///////////////////////////////////////////////////////////
+
+function formatDateString( date, string )
+{
+    var placeholderStart = "{{%d";
+    var placeholderEnd = "}}";
+
+    // Get the start of the placeholder
+    var startIndex = string.indexOf( placeholderStart );
+    // Return if not found
+    if( startIndex < 0 ) return false;
+
+    // Get the placeholder
+    var placeholderString = string.substring( startIndex, string.indexOf( placeholderEnd )+placeholderEnd.length );
+
+    // Get pure date string from placeholder
+    var dateString = placeholderString.substring( placeholderStart.length, placeholderString.indexOf( "}}" ) );
+
+    // Do replacements
+    dateString = formatYearFromString( date, dateString );
+    dateString = formatMonthFromString( date, dateString );
+    dateString = formatDayFromString( date, dateString );
+
+    // Replace and return
+    return string.replace( placeholderString, dateString );
+}
+
+///////////////////////////////////////////////////////////
+//  Searchs for year placeholder format and repalces it with 
+//  the year of a date
+///////////////////////////////////////////////////////////
+
+function formatYearFromString( date, string )
+{
+    // Get year
+    var year = String( date.getFullYear() );
+    // Get the number of digits to replace
+    var numYearDigits = (string.match(/Y/g) || []).length;
+    // Cut year to number of digits 
+    year = year.substring( year.length - numYearDigits );
+    // Get the string to replace
+    var sReplace = string.substr( string.indexOf("Y"), numYearDigits );
+    // Return replaced
+    return string.replace( sReplace, year );
+}
+
+///////////////////////////////////////////////////////////
+//  Searchs for month placeholder format and repalces it with 
+//  the month of a date
+///////////////////////////////////////////////////////////
+
+function formatMonthFromString( date, string )
+{
+    // Get month
+    var month = String( date.getMonth() + 1 );
+    // Add the 0 if needed
+    month = ( ( (month*1) < 10 ) )? "0"+month : month;
+    // Get the number of digits to replace
+    var numMonthDigits = (string.match(/M/g) || []).length;
+    // Cut month to number of digits 
+    month = month.substring( month.length - numMonthDigits );
+    // Get the string to replace
+    var sReplace = string.substr( string.indexOf("M"), numMonthDigits );
+    // Return replaced
+    return string.replace( sReplace, month );
+}
+
+///////////////////////////////////////////////////////////
+//  Searchs for day placeholder format and repalces it with 
+//  the day of a date
+///////////////////////////////////////////////////////////
+
+function formatDayFromString( date, string )
+{
+    // Get day
+    var day = String( date.getDate() );
+    // Add the 0 if needed
+    day = ( ( (day*1) < 10 ) )? "0"+day : day;
+    // Get the number of digits to replace
+    var numDayDigits = (string.match(/D/g) || []).length;
+    // Cut day to number of digits 
+    day = day.substring( day.length - numDayDigits );
+    // Get the string to replace
+    var sReplace = string.substr( string.indexOf("D"), numDayDigits );
+    // Return replaced
+    return string.replace( sReplace, day );
+}

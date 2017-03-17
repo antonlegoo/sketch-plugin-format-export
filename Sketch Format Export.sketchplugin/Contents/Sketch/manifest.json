@@ -1,0 +1,23 @@
+{
+  "author" : "",
+  "commands" : [
+    {
+      "script" : "script-format-export.cocoascript",
+      "handler" : "onRun",
+      "shortcut" : "shift ctrl command e",
+      "name" : "Sketch Format Export",
+      "identifier" : "sketch-format-export"
+    }
+  ],
+  "menu" : {
+    "items" : [
+      "sketch-format-export"
+    ],
+    "title" : "Sketch Format Export"
+  },
+  "identifier" : "com.antonlegoo.sketch-format-export",
+  "version" : "0.4.3",
+  "description" : "Sketch 3 plugin to ",
+  "authorEmail" : "azeven@gmail.com",
+  "name" : "Sketch Format Export"
+}
