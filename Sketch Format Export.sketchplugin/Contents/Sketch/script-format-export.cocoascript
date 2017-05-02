@@ -1,4 +1,4 @@
-@import "formatter-date.cocoascript"
+@import "formatter-date.cocoascript";
 
 var doc;
 var docFilename;
@@ -37,33 +37,14 @@ var onRun = function( context )
         // Get the user's selection as the export path
         var exportPath = folderResponse.selection;
 
+        // Get the artboards from the selected layers
+        var artboards = getArtboardsForLayers( sketch.selectedDocument.selectedLayers );
 
-        // sketch.selectedDocument.selectedLayers.iterateWithFilter("isArtboard", function(artboard)
-        // {
-        //     //
-        //     handleArtboard( artboard._object, nowDate, exportPath );
-        // });
-
-        // sketch.selectedDocument.selectedLayers.iterateWithFilter("isLayer", function(layer)
-
-
-
-
-        // Loop thru each selected layer
-        sketch.selectedDocument.selectedLayers.iterate( function(layer)
+        // Loop thru each selected artboard
+        artboards.forEach( function(artboard)
         {
-            // Determine if its an artboard
-            if( layer._object.class() == "MSArtboardGroup" )
-            {
-                // Handle the artboard
-                handleArtboard( layer._object, nowDate, exportPath );
-            }
-            else
-            {
-                // Its a layer. Handle its parent arboard
-                handleArtboard( layer._object.parentArtboard(), nowDate, exportPath );
-            }
-
+            // Handle the artboard
+            handleArtboard( artboard, nowDate, exportPath );
         });
 	};
 
@@ -76,6 +57,51 @@ var onRun = function( context )
 
 
 
+
+
+
+
+
+///////////////////////////////////////////////////////////
+//	Returns an array of artboards for the given layers
+///////////////////////////////////////////////////////////
+
+function getArtboardsForLayers( layers )
+{
+	var artboards = [];			// array for artboards to return
+	var artboardIds = [];		// array for ids of the artboards to return
+
+
+
+	// Loop thru each layer
+	layers.iterate( function(layer)
+    {	
+    	var artboardToAdd = null;	// the artboard to add
+    	var id = null;				// the id of the artboard to add
+
+    	// Add the artboard or, if its a layer, its parent artboard
+        artboardToAdd = ( layer._object.class() == "MSArtboardGroup" ) ? layer._object : layer._object.parentArtboard();
+
+        // Get the id of the artboard
+        id = artboardToAdd.hash() * 1;
+
+        // If neither are null
+        if( artboardToAdd && id )
+        {
+        	// See it the artboard already exists
+            if( artboardIds.includes( id ) == false )
+            {
+            	// .. it isn't, so add it
+            	artboards.push( artboardToAdd );
+		    	artboardIds.push( id );	
+            }
+        }
+
+    });
+
+	// Return the array of artboards
+	return artboards;
+};
 
 
 
