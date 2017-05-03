@@ -42,7 +42,9 @@ Export the selected artboards from the Plugins menu or by using the keyboard sho
 
 The date placeholder replaces the placeholder text with the current date.
 
-The format is as follows:`{{%d``your placeholder``}}`
+The format is as follows:`{{%d` `your placeholder` `}}`
+
+So, for example, if the date is currently May 2nd 2017, the placeholder `{{%dMM-DD-YYYY}}` will export ``05-02-2017``.
 
 Below are the available tokens: 
 
@@ -52,8 +54,6 @@ Below are the available tokens:
 | Day   | DD  | 01 02... 31 |
 | Year  | YY  | 17 18... 00 |
 |       | YYYY  | 2017 2018... 2100 |
-
-So, for example, if the date is currently May 2nd 2017, the placeholder `{{%dMM-DD-YYYY}}` will export ``05-02-2017``.
 
 ## Example
 
