@@ -20,21 +20,28 @@ Placeholder text can be entered in two places, text layers and artboard names. S
 | ![select-artboard](./readme-images/select-artboard.png) |
 | Artboard name example  |
 
+***
+
 #### 2. Make the artboards exportable
 
 Add your export presets like normal. They will all be exported.
 
 ![Export screenshot](./readme-images/export.png)
 
+***
+
 #### 3. Select an artboard to export
 
 Select artboards to export by selecting them in the artboard palette and/or by selecting layers within the artboard.
+
+***
 
 #### 4. Export the artboards
 
 Export the selected artboards from the Plugins menu or by using the keyboard shortcut.
 
 ![Plugin Menu](./readme-images/plugin-menu.png)
+
 
 ## Placeholder Formats
 
