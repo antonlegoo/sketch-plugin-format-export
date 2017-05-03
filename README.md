@@ -2,38 +2,49 @@
 
 A Sketch plugin that exports artboards while also replacing formatted placeholders of text.
 
+![Example](./readme-images/example.png)
+
 ## How to use it
 
 #### 1. Insert placeholder text
 
 Placeholder text can be entered in two places, text layers and artboard names. See [Placeholder Formats](./Placeholder_Formats) for how to use placeholder text. 
 
-IMG: Text layer.
+| |
+| --- |
+| ![artboard palette](./readme-images/select-layer.png) |
+| Text layer example  |
 
-IMG: Artboard names.
+| |
+| --- |
+| ![select-artboard](./readme-images/select-artboard.png) |
+| Artboard name example  |
 
-#### 2. Select an artboard to export
+#### 2. Make the artboards exportable
 
-Select artboards to export by selecting them in the artboard palette:
+Add your export presets like normal. They will all be exported.
 
-IMG: artboard palette
+![Export screenshot](./readme-images/export.png)
 
-and/or by selecting layers within the artboard:
+#### 3. Select an artboard to export
 
-IMG: layer selection
+Select artboards to export by selecting them in the artboard palette and/or by selecting layers within the artboard.
 
-#### 3. Export the artboards
+#### 4. Export the artboards
 
 Export the selected artboards from the Plugins menu or by using the keyboard shortcut.
 
-IMG: Plugin menu
+![Plugin Menu](./readme-images/plugin-menu.png)
 
 ## Placeholder Formats
 
 #### Date Placeholder Format
 
-- start brackets 
-- Month day year
+The date placeholder replaces the placeholder text with the current date.
+
+The format is as follows:`{{%d``your placeholder``}}`
+
+Below are the available tokens: 
 
 |       | Token         | Output        |
 | ----- | ------------- | ------------- |
@@ -42,8 +53,8 @@ IMG: Plugin menu
 | Year  | YY  | 17 18... 00 |
 |       | YYYY  | 2017 2018... 2100 |
 
+So, for example, if the date is currently May 2nd 2017, the placeholder `{{%dMM-DD-YYYY}}` will export ``05-02-2017``.
 
 ## Example
 
-- Test file
-- Before and after image
+Included is an example Sketch file, [format-export-test.sketch](./format-export-test.sketch).
