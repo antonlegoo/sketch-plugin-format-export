@@ -30,9 +30,9 @@ Add your export presets like normal. They will all be exported.
 
 ***
 
-#### 3. Select an artboard to export
+#### 3. Select artboards to export
 
-Select artboards to export by selecting them in the artboard palette and/or by selecting layers within the artboard.
+Select artboards to export by 1) selecting them in the artboard palette and/or 2) by selecting layers on the artboard's actual canvas.
 
 ***
 
