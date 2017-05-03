@@ -8,7 +8,7 @@ A Sketch plugin that exports artboards while also replacing formatted placeholde
 
 #### 1. Insert placeholder text
 
-Placeholder text can be entered in two places, text layers and artboard names. See [Placeholder Formats](#placeholder-Formats) for how to use placeholder text. 
+Placeholder text can be entered in two places, text layers and artboard names. See [Placeholder Formats](#placeholder-formats) for how to use placeholder text. 
 
 | |
 | --- |
