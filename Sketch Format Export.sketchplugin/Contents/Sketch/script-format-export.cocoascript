@@ -25,7 +25,6 @@ var onRun = function( context )
 	} 
 	else
 	{
-
 		var sketch = context.api();
 
         // Ask the user to specify which folder to export to
@@ -161,6 +160,10 @@ function handleArtboard( artboard, date, exportPath )
 
 function exportArtboard( artboard, exportPath )
 {
+	// If there aren't any export formats, let the user know
+	if( artboard.exportOptionsGeneric().exportFormats().length == 0 )
+		[doc showMessage:[NSString stringWithFormat:@"Please choose an export format for artboard: %@", artboard.name() ] ];
+
 	// For each of the artboard's exports
 	artboard.exportOptionsGeneric().exportFormats().forEach( function( exportItem )
 	{	
@@ -175,6 +178,11 @@ function exportArtboard( artboard, exportPath )
 
         // Remove the "file://"" part of the path, as it causes a bug where it doesn't export
         exportFullPath = exportFullPath.replace( "file://", "" );
+        // Escape spaces
+        exportFullPath = exportFullPath.replace( "%20", "\ " );
+
+        log( "Exporting: " );
+		log( exportFullPath );
 
         // Do export
 		[doc saveArtboardOrSlice:slice toFile:exportFullPath];
