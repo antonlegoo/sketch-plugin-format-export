@@ -160,12 +160,17 @@ function handleArtboard( artboard, date, exportPath )
 
 function exportArtboard( artboard, exportPath )
 {
+	// Get the artboard's export options
+	//		exportOptionsGeneric() = Sketch 43 and below.
+	//		exportOptions() = Sketch 44 and above
+	var exportOptions = ( artboard.exportOptionsGeneric ) ? artboard.exportOptionsGeneric() : artboard.exportOptions();
+
 	// If there aren't any export formats, let the user know
-	if( artboard.exportOptionsGeneric().exportFormats().length == 0 )
+	if( exportOptions.exportFormats().length == 0 )
 		[doc showMessage:[NSString stringWithFormat:@"Please choose an export format for artboard: %@", artboard.name() ] ];
 
 	// For each of the artboard's exports
-	artboard.exportOptionsGeneric().exportFormats().forEach( function( exportItem )
+	exportOptions.exportFormats().forEach( function( exportItem )
 	{	
 		// Create the slice
 		var slice = [MSExportRequest exportRequestFromExportFormat:exportItem layer:artboard inRect:artboard.rect() useIDForName:true];
